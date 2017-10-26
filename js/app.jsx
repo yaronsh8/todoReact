@@ -21,7 +21,8 @@ var app = app || {};
 			return {
 				nowShowing: app.ALL_TODOS,
 				editing: null,
-				newTodo: ''
+				newTodo: '',
+				sortOrder: 0
 			};
 		},
 
@@ -39,7 +40,8 @@ var app = app || {};
 			this.setState({newTodo: event.target.value});
 		},
 
-		handleNewTodoKeyDown: function (event) {
+		handleNewTodoKeyDown: function (event,todo) {
+			// console.log(this.state)
 			if (event.keyCode !== ENTER_KEY) {
 				return;
 			}
@@ -48,7 +50,7 @@ var app = app || {};
 
 			var val = this.state.newTodo.trim();
 
-			if (val) {
+			if (val) {		
 				this.props.model.addTodo(val);
 				this.setState({newTodo: ''});
 			}
@@ -60,6 +62,7 @@ var app = app || {};
 		},
 
 		toggle: function (todoToToggle) {
+			// console.log('model: ',this.props.model);
 			this.props.model.toggle(todoToToggle);
 		},
 
@@ -83,6 +86,12 @@ var app = app || {};
 		clearCompleted: function () {
 			this.props.model.clearCompleted();
 		},
+
+		up: function (todo) {
+			console.log('app:', this.props)
+			this.props.model.up(todo);
+		},
+
 
 		render: function () {
 			var footer;
@@ -111,6 +120,7 @@ var app = app || {};
 						editing={this.state.editing === todo.id}
 						onSave={this.save.bind(this, todo)}
 						onCancel={this.cancel}
+						onUp={this.up.bind(this, todo)}
 					/>
 				);
 			}, this);
@@ -147,6 +157,7 @@ var app = app || {};
 				);
 			}
 
+			// console.log('xxx',todos)
 			return (
 				<div>
 					<header className="header">

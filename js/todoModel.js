@@ -29,12 +29,18 @@ var app = app || {};
 	};
 
 	app.TodoModel.prototype.addTodo = function (title) {
+		// console.log((Math.max.apply(Math,this.todos.map((item)=>{return item.sorOrder;}))) )
+		// var maxOrder = (Math.max.apply(Math,this.todos.map((item)=> item ? item.sorOrder : 0))) 
+
+		// maxOrder=((isNaN(maxOrder))||!(isFinite(maxOrder))) ? 0 : maxOrder;
 		this.todos = this.todos.concat({
 			id: Utils.uuid(),
 			title: title,
-			completed: false
+			completed: false,
+			// sortOrder: isFinite(Math.max.apply(Math,this.todos.map(function(o){return o.sortOrder;})))?
+			// Math.max.apply(Math,this.todos.map(function(o){return o.sortOrder;})) +1 : 
+			// 0
 		});
-
 		this.inform();
 	};
 
@@ -83,5 +89,19 @@ var app = app || {};
 
 		this.inform();
 	};
+
+	app.TodoModel.prototype.up = function (todo) {
+		var todoIndex=this.todos.indexOf(todo)
+		var otherTodo = this.todos[todoIndex-1]
+		console.log('todoIndex: ', todoIndex)
+		if (todoIndex!=0){
+			this.todos[todoIndex] = otherTodo;
+			this.todos[todoIndex-1] = todo
+		}	
+		this.inform();
+	};
+
+
+	
 
 })();

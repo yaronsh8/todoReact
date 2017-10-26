@@ -76,21 +76,17 @@ var app = app || {};
 		},
 
 		render: function () {
+			// console.log('item:', this.props)
 			return (
 				<li className={classNames({
 					completed: this.props.todo.completed,
 					editing: this.props.editing
 				})}>
 					<div className="view">
-						<button
-							className="updown up"
-							onClick={function(){console.log(111)}}
-						>Up </button>
-						<button
-							className="updown down"
-							onClick={function(){console.log(111)}}
-						>Down </button>
 
+					<button className="updown up" onClick={this.props.onUp} >up</button>
+					<button className="updown down" onClick={this.props.onDown} >down</button>
+					
 						<input
 							className="toggle"
 							type="checkbox"
