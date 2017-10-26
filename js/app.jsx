@@ -21,8 +21,7 @@ var app = app || {};
 			return {
 				nowShowing: app.ALL_TODOS,
 				editing: null,
-				newTodo: '',
-				sortOrder: 0
+				newTodo: ''
 			};
 		},
 
@@ -37,7 +36,17 @@ var app = app || {};
 		},
 
 		handleChange: function (event) {
-			this.setState({newTodo: event.target.value});
+			if (event.target.type=="submit"){
+				this.rndTodo()
+			}else{
+				this.setState({newTodo: event.target.value});
+			}
+		},
+
+		rndTodo: function(){
+			var rndTodos=['fly', 'jump', 'run', 'climb', 'dive']
+			var rndTodo=rndTodos[(Math.floor(Math.random()*rndTodos.length))]
+			this.setState({newTodo: rndTodo});
 		},
 
 		handleNewTodoKeyDown: function (event,todo) {
@@ -90,6 +99,9 @@ var app = app || {};
 		},
 		moveDown: function (todo) {
 			this.props.model.moveDown(todo);
+		},
+		randomTodo: function () {
+			this.props.model.randomTodo();
 		},
 
 
@@ -162,7 +174,7 @@ var app = app || {};
 				<div>
 					<header className="header">
 						<h1>todos</h1>
-						{/* <button className="updown">R</button> */}
+						<button className="updown random " onClick={this.handleChange}> Random </button>
 						<input
 							className="new-todo"
 							placeholder="What needs to be done?"

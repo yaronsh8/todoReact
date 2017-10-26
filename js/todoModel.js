@@ -103,6 +103,11 @@ var app = app || {};
 		this.inform();
 	};
 
+	app.TodoModel.prototype.randomTodo = function () {
+		console.log(this)
+		this.onChanges.push("aaa");
+		this.inform();
+	};
 	
 
 })();
