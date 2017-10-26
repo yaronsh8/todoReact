@@ -82,6 +82,15 @@ var app = app || {};
 					editing: this.props.editing
 				})}>
 					<div className="view">
+						<button
+							className="updown up"
+							onClick={function(){console.log(111)}}
+						>Up </button>
+						<button
+							className="updown down"
+							onClick={function(){console.log(111)}}
+						>Down </button>
+
 						<input
 							className="toggle"
 							type="checkbox"
@@ -91,7 +100,7 @@ var app = app || {};
 						<label onDoubleClick={this.handleEdit}>
 							{this.props.todo.title}
 						</label>
-						<button className="destroy" onClick={this.props.onDestroy} />
+						{<button className="destroy" onClick={this.props.onDestroy} />}
 					</div>
 					<input
 						ref="editField"
