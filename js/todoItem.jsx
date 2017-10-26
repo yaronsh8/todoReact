@@ -84,8 +84,8 @@ var app = app || {};
 				})}>
 					<div className="view">
 
-					<button className="updown up" onClick={this.props.onUp} >up</button>
-					<button className="updown down" onClick={this.props.onDown} >down</button>
+					<button className="updown up" onClick={this.props.onMoveUp} >up</button>
+					<button className="updown down" onClick={this.props.onMoveDown} >down</button>
 					
 						<input
 							className="toggle"

@@ -87,9 +87,11 @@ var app = app || {};
 			this.props.model.clearCompleted();
 		},
 
-		up: function (todo) {
-			console.log('app:', this.props)
-			this.props.model.up(todo);
+		moveUp: function (todo) {
+			this.props.model.moveUp(todo);
+		},
+		moveDown: function (todo) {
+			this.props.model.moveDown(todo);
 		},
 
 
@@ -120,8 +122,9 @@ var app = app || {};
 						editing={this.state.editing === todo.id}
 						onSave={this.save.bind(this, todo)}
 						onCancel={this.cancel}
-						onUp={this.up.bind(this, todo)}
-					/>
+						onMoveUp={this.moveUp.bind(this, todo)}
+						onMoveDown={this.moveDown.bind(this, todo)}
+						/>
 				);
 			}, this);
 
