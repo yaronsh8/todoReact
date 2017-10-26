@@ -27,10 +27,11 @@ var app = app || {};
 
 		store: function (namespace, data) {
 			if (data) {
-				return localStorage.setItem(namespace, JSON.stringify(data));
+				document.cookie= JSON.stringify(data);
+				return
 			}
 
-			var store = localStorage.getItem(namespace);
+			var store=document.cookie;
 			return (store && JSON.parse(store)) || [];
 		},
 

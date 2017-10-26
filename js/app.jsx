@@ -41,7 +41,6 @@ var app = app || {};
 		},
 
 		handleNewTodoKeyDown: function (event,todo) {
-			// console.log(this.state)
 			if (event.keyCode !== ENTER_KEY) {
 				return;
 			}
@@ -62,7 +61,6 @@ var app = app || {};
 		},
 
 		toggle: function (todoToToggle) {
-			// console.log('model: ',this.props.model);
 			this.props.model.toggle(todoToToggle);
 		},
 
@@ -160,11 +158,11 @@ var app = app || {};
 				);
 			}
 
-			// console.log('xxx',todos)
 			return (
 				<div>
 					<header className="header">
 						<h1>todos</h1>
+						{/* <button className="updown">R</button> */}
 						<input
 							className="new-todo"
 							placeholder="What needs to be done?"
